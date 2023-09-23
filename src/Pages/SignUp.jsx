@@ -22,6 +22,21 @@ export default function SignUp() {
             [e.target.id]: e.target.value
         }));
     }
+    function check(e){
+        e.preventDefault()
+        var check = document.getElementById("email");
+        if (check.value.includes("@")) {
+            if (check.value.split("@")[1]!=="chitkara.edu.in") {
+                alert("Please enter Chitkara mail")
+            }
+        }
+        else if(!check.value.includes("@")){
+            setformData((prevState)=>({
+                ...prevState,
+                email: email+"@chitkara.edu.in"
+            }));
+        }
+    }
 
     async function onSubmit(e){
         e.preventDefault();
@@ -45,7 +60,7 @@ export default function SignUp() {
           }
     }
   return (
-    <section className=' w-screen h-screen bg-grid min-[400px]:p-16'>
+    <section className=' w-screen h-screen bg-grid min-[450px]:p-16'>
         <div className='flex h-full w-full box-border items-center justify-center'>
             <div className='w-screen sm:w-1/2 lg:w-1/3 lg:h-4/5 bg-[#23262d] rounded-lg'>
                 <div>
@@ -74,15 +89,15 @@ export default function SignUp() {
                         </div>
                         <div className='flex flex-col lg:text-lg'>
                             <label htmlFor="email" className='text-white font-semibold text-xl'>Email</label>
-                            <input type="email" id="email" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600' value={email} onChange={onchange}/>
+                            <input type="text" id="email" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600 px-3' value={email} onChange={onchange} placeholder='Enter Email Address...                       @chitkara.edu.in' onMouseLeave={check}/>
                         </div>
                         <div className='flex flex-col lg:text-lg'>
                             <label htmlFor="password" className='text-white font-semibold text-xl'>Password</label>
-                            <input type="password" id="password" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600' value={password} onChange={onchange}/>
+                            <input type="password" id="password" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600  px-3' value={password} onChange={onchange}/>
                         </div>
                         <div className='flex flex-col lg:text-lg'>
                             <label htmlFor="number" className='text-white font-semibold text-xl'>Mobile Number</label>
-                            <input type="number" id="number" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600' value={number} onChange={onchange}/>
+                            <input type="number" id="number" className=' h-10 rounded-md outline-none focus:border-2 focus:border-orange-600 px-3' value={number} onChange={onchange}/>
                         </div>
                         <div className='my-5 '>
                             <button type='submit' className='w-full py-2 bg-orange-600 text-white font-semibold text-lg font-serif hover:bg-transparent hover:border-2 hover:border-orange-600 rounded-md'>Submit</button>
