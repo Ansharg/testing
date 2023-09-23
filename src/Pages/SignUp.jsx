@@ -42,6 +42,9 @@ export default function SignUp() {
         e.preventDefault();
         try {
             const auth = getAuth();
+            if (email.split("@")[1]!=="chitkara.edu.in") {
+                throw "chitkara mail not used";
+            }
             const userCredentials = await createUserWithEmailAndPassword(auth,email,password);
             updateProfile(auth.currentUser,{
               First: First,
@@ -55,8 +58,12 @@ export default function SignUp() {
             toast.success("Sign Up was successful");
             navigate("/login");
           } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong with the registration");
+            if (error) {
+                toast.error("Please Use Chitkara Email Id");
+            }
+            else{
+                toast.error("Something went wrong with the registration");
+            }
           }
     }
   return (
