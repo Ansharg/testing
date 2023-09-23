@@ -31,10 +31,12 @@ export default function SignUp() {
             }
         }
         else if(!check.value.includes("@")){
-            setformData((prevState)=>({
-                ...prevState,
-                email: email+"@chitkara.edu.in"
-            }));
+            if (check.value !== '') {
+                setformData((prevState)=>({
+                    ...prevState,
+                    email: email+"@chitkara.edu.in"
+                }));
+            }
         }
     }
 
